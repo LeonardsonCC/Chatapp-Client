@@ -1,51 +1,23 @@
-import React, { FormEvent } from 'react';
+import React from 'react';
 import './App.css';
 
-import socket from '../../services/socket';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
-class App extends React.Component {
-  state = {
-    value: ''
-  };
+import Login from '../Login/Login';
+import Chat from '../Chat/Chat';
 
-  inputChanged = (e: FormEvent<HTMLInputElement>) => {
-    this.setState({
-      value: e.currentTarget.value
-    })
-  }
-
-  buttonClicked = () => {
-    const username = this.state.value;
-    if (username.trim() === '') {
-      console.log('Username vazio!');
-    }
-    else {
-      socket.emit('register username', this.state.value);
-      console.log('enviado!');
-    }
-  }
-
-  render() {
-    return (
+const App = (props: any) => {
+  return (
+    <Router>
       <div className="App">
-        <h1>Bem-vindo ao chat mais legal do mercado!</h1>
-        <div className="panel">
-          <div className="input-form">
-            <label htmlFor="username">
-              Username:
-            </label>
-            <input
-              onChange={e => this.inputChanged(e)}
-              value={this.state.value}
-              type="text"
-              id="username"
-            />
-          </div>
-          <button onClick={this.buttonClicked}>Enviar</button>
-        </div>
+        <Switch>
+          <Route path="/" exact component={Login} />
+          <Route path="/login" component={Login} />
+          <Route path="/chat" component={Chat} />
+        </Switch>
       </div>
-    );
-  }
+    </Router>
+  );
 }
 
 export default App;

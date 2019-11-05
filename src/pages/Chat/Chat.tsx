@@ -1,22 +1,38 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { Redirect } from 'react-router-dom';
 
 interface IProps {
     changePage: (page: string) => void
 }
 
 const Chat: React.FC<IProps> = (props) => {
-    const session = sessionStorage.getItem('session');
-    if (session !== undefined && 
+    const [session, setSession] = useState<string | null>();
+    let element: JSX.Element = <div />;
+
+    useEffect(() => {
+        if (session === '') {
+            setSession(sessionStorage.getItem('session'));
+        }
+    });
+
+    if (session !== null &&
         session !== '') {
-        console.log('Bem-vindo a sala de chat!');
-    }
+            console.log('rendered')
+            element = (
+                <h1>
+                    Logado!
+                </h1>
+            );
+        }
     else {
-        console.log('OPS!')
+        element = (
+            <Redirect to="/login" />
+        )
     }
 
     return (
         <div>
-            Teste
+            {element}
         </div>
     )
 }

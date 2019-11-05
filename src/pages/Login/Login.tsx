@@ -1,4 +1,5 @@
 import React, { useState, FormEvent } from 'react';
+import './styles.css';
 import socket from '../../services/socket';
 import { Redirect } from 'react-router';
 
@@ -31,15 +32,14 @@ const Login: React.FC<IProps> = (props) => {
       }
 
     return (
-        <div>
+        <div className="Login">
             {
                 session !== '' ?
                     <Redirect to="/chat" /> :
                     null
             }
-            <h1>Bem-vindo ao chat mais legal do mundo!</h1>
-            <div className="panel">
-                <div className="input-form">
+            <h1 className="title">Bem-vindo ao chat mais legal do mundo!</h1>
+            <div className="input-group">
                 <label htmlFor="username">
                     Username:
                 </label>
@@ -49,9 +49,8 @@ const Login: React.FC<IProps> = (props) => {
                     type="text"
                     id="username"
                 />
-                </div>
-                <button onClick={buttonClicked}>Enviar</button>
             </div>
+            <button className="submit" onClick={buttonClicked}>Enviar</button>
         </div>
     );
 }

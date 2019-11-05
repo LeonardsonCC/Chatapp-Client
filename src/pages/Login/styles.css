@@ -1,0 +1,42 @@
+.Login {
+    height: inherit;
+    width: inherit;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.Login .title {
+    margin: 10px;
+    padding: 5px;
+    letter-spacing: 3px;
+    font-size: 48px;
+}
+
+.Login .input-group {
+    text-align: left;
+    width: 200px;
+}
+.Login .input-group label {
+    width: 100%;
+}
+.Login .input-group input {
+    width: 100%;
+    padding: 5px;
+    border: 0;
+    border-bottom: 1px solid black;
+    outline: none;
+}
+
+.Login .submit {
+    display: block;
+    margin: 10px;
+    padding: 10px;
+    width: 200px;
+    background-color: rgb(56, 56, 56);
+    color: white;
+    border: none;
+    outline: none;
+}

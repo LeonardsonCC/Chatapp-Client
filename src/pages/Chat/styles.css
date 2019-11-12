@@ -1,0 +1,26 @@
+.Chat {
+    height: 100vh;
+    width: 100vw;
+}
+
+.Chat .chat-box {
+    height: calc(100% - 50px);
+    background-color: rgb(170, 170, 170);
+    overflow-y: auto;
+}
+
+.Chat .input-group {
+    height: 50px;
+    display: flex;
+    align-items: center;
+    background-color: lightgray;
+    padding: 2px 5px;
+}
+
+.Chat .input-group input {
+    width: 100%;
+    border: 0;
+    padding: 10px 15px;
+    border-radius: 20px;
+    outline: none;
+}

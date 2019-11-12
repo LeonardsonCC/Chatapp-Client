@@ -8,7 +8,7 @@ import Chat from '../Chat/Chat';
 import { isAuthenticated, userSession } from '../../services/auth';
 import { sendMySession } from '../../services/socket';
 
-const App = (props: any) => {
+const App = (props) => {
   if (userSession) {
     sendMySession(userSession);
   }

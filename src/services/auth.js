@@ -12,7 +12,7 @@ export const isAuthenticated = () => {
     return false;
 }
 
-export const newAuthentication = (username: string): void => {
+export const newAuthentication = (username) => {
     if (username.trim() === '') {
         throw Error('username inválido');
     }

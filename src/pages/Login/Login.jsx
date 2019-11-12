@@ -1,26 +1,21 @@
-import React, { useState, FormEvent } from 'react';
+import React, { useState } from 'react';
 import './styles.css';
 import { Redirect } from 'react-router';
 
 import { SESSION_KEY, newAuthentication, isAuthenticated } from '../../services/auth';
 import { subscribeToUserSignIn } from '../../services/socket';
 
-
-interface IProps {
-  changePage: (page: string) => void
-}
-
-const Login: React.FC<IProps> = (props) => {
+const Login = (props) => {
   const [value, setValue] = useState('');
 
-  const inputChanged = (e: FormEvent<HTMLInputElement>) => {
+  const inputChanged = (e) => {
     setValue(e.currentTarget.value);
   }
 
   const buttonClicked = () => {
     const username = value;
     newAuthentication(username);
-    subscribeToUserSignIn((session:string) => {
+    subscribeToUserSignIn((session) => {
       sessionStorage.setItem(SESSION_KEY, session);
     });
   }

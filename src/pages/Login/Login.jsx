@@ -2,11 +2,12 @@ import React, { useState } from 'react';
 import './styles.css';
 import { Redirect } from 'react-router';
 
-import { SESSION_KEY, newAuthentication, isAuthenticated } from '../../services/auth';
+import { SESSION_KEY, newAuthentication } from '../../services/auth';
 import { subscribeToUserSignIn } from '../../services/socket';
 
-const Login = (props) => {
+const Login = () => {
   const [value, setValue] = useState('');
+  const [redirect, setRedirect] = useState(false);
 
   const inputChanged = (e) => {
     setValue(e.currentTarget.value);
@@ -17,21 +18,20 @@ const Login = (props) => {
     newAuthentication(username);
     subscribeToUserSignIn((session) => {
       sessionStorage.setItem(SESSION_KEY, session);
+      setRedirect(true);
     });
   }
 
+  if (redirect) {
+    return <Redirect to="/chat" />;
+  }
   return (
     <div className="Login">
-      {
-        (isAuthenticated()) ?
-          <Redirect to="/chat" /> :
-          null
-      }
       <h1 className="title">Bem-vindo ao chat!</h1>
       <div className="input-group">
         <label htmlFor="username">
           Username:
-                    </label>
+        </label>
         <input
           onChange={e => inputChanged(e)}
           value={value}

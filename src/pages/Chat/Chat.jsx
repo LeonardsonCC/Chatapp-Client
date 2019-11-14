@@ -3,24 +3,17 @@ import React, { useState } from 'react';
 import './styles.css';
 import { sendNewMessage, subscribeToNewMessage } from '../../services/socket';
 
-interface Messages {
-    user_id: number,
-    username: string,
-    message_id: number,
-    message: string,
-}
-
-const Chat: React.FC = () => {
+const Chat = () => {
     const [value, setValue] = useState('');
-    const [messageList, setMessageList] = useState<Messages[]>([]);
+    const [messageList, setMessageList] = useState([]);
     
-    const addNewMessage = (message: Messages) => {
+    const addNewMessage = (message) => {
         let new_messageList = [...messageList];
         new_messageList.push(message);
         setMessageList(new_messageList);
     }
 
-    subscribeToNewMessage((message: Messages) => {
+    subscribeToNewMessage((message) => {
         addNewMessage(message);
     });
 
@@ -29,7 +22,7 @@ const Chat: React.FC = () => {
             <ul className="chat-box">
                 {
                     messageList.map((item) => (
-                        <li key={item.message_id}>{item.username}: {item.message}</li>
+                        <li key={item.message_id}>{item.username}: {item.message_text}</li>
                     ))
                 }
             </ul>

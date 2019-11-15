@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { Redirect } from 'react-router-dom';
+import { isAuthenticated } from '../../services/auth';
 
 import './styles.css';
 import { sendNewMessage, subscribeToNewMessage } from '../../services/socket';
@@ -17,6 +19,9 @@ const Chat = () => {
     addNewMessage(message);
   });
 
+  if (!isAuthenticated()) {
+    return <Redirect to="/login" />;
+  }
   return (
     <div className="Chat">
       <ul className="chat-box">

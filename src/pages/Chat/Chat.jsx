@@ -15,6 +15,13 @@ const Chat = () => {
     setMessageList(new_messageList);
   };
 
+  const keyUpHandler = event => {
+    if (event.keyCode === 13) {
+      sendNewMessage(value);
+      setValue('');
+    }
+  }
+
   subscribeToNewMessage(message => {
     addNewMessage(message);
   });
@@ -37,9 +44,7 @@ const Chat = () => {
           placeholder="Type something..."
           value={value}
           onChange={event => setValue(event.currentTarget.value)}
-          onKeyUp={event =>
-            event.keyCode === 13 ? sendNewMessage(value) : null
-          }
+          onKeyUp={(e) => keyUpHandler(e)}
         />
       </div>
     </div>

@@ -12,6 +12,12 @@ export const subscribeToUserSignIn = cb => {
   });
 };
 
+export const subscribeSendMySessionResult = cb => {
+  socket.on('register by token result', result => {
+    cb(result);
+  });
+}
+
 export const subscribeToNewMessage = cb => {
   socket.on('new message', message_obj => {
     cb(message_obj);

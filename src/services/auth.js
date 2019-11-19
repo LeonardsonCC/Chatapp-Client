@@ -18,3 +18,7 @@ export const newAuthentication = username => {
   }
   sendUserSignIn(username);
 };
+
+export const clearSession = () => {
+  sessionStorage.removeItem(SESSION_KEY);
+}

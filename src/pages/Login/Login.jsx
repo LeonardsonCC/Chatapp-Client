@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './styles.css';
 import { Redirect } from 'react-router';
 
-import { SESSION_KEY, newAuthentication } from '../../services/auth';
+import { SESSION_KEY, USERNAME_KEY, newAuthentication } from '../../services/auth';
 import { subscribeToUserSignIn } from '../../services/socket';
 
 const Login = () => {
@@ -16,8 +16,10 @@ const Login = () => {
   const buttonClicked = () => {
     const username = value;
     newAuthentication(username);
-    subscribeToUserSignIn(session => {
+    subscribeToUserSignIn((session, username) => {
+      console.log(session)
       sessionStorage.setItem(SESSION_KEY, session);
+      sessionStorage.setItem(USERNAME_KEY, username);
       setRedirect(true);
     });
   };

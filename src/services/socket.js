@@ -5,9 +5,10 @@ const host = 'localhost:3001';
 const socket = socketIoClient(host);
 
 export const subscribeToUserSignIn = cb => {
-  socket.on('register username result', session => {
+  socket.on('register username result', (session, username) => {
     if (session) {
-      cb(session);
+      console.log(session);
+      cb(session, username);
     }
   });
 };
